@@ -15,4 +15,4 @@ jobs:
       run: python3 build.py 
       env:
         DOCKER_IMAGE : "myNginx"
-        DOCKER_TAG : v1.03"
+        DOCKER_TAG : "v1.03"
