@@ -14,5 +14,5 @@ jobs:
     - name: Build the Docker image
       run: python3 build.py 
       env:
-        DOCKER_IMAGE : "myNginx"
+        DOCKER_IMAGE : "mynginx"
         DOCKER_TAG : "v1.03"
