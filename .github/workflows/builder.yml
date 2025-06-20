@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - new
-  workflow_dispatch:
-    inputs:
-      ref:
-        description: 'Branch to build (e.g., new, master)'
-        required: false
-        default: 'new'
+  # workflow_dispatch:
+  #   inputs:
+  #     ref:
+  #       description: 'Branch to build (e.g., new, master)'
+  #       required: false
+  #       default: 'new'
 
 jobs:
   build:
