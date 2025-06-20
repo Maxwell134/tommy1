@@ -1,26 +1,35 @@
-name: Branch-Based Docker Builder
+# .github/workflows/dispatch_with_branch.yml
+name: Manual Branch-Based Runner
 
 on:
   push:
     branches:
-      - '**'
+      - new   # Trigger automatically when 'new' branch is pushed
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Branch or tag to run against (e.g., main, feature-x)'
+        required: true
+        default: 'main'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout specific branch
         uses: actions/checkout@v3
-
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
+        with:
+          ref: ${{ inputs.ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Run Python to build Docker image
+      - name: Run logic with specified branch
+        env:
+          SELECTED_REF: ${{ inputs.ref }}
         run: |
-          python testing.py
+          echo "Running workflow for branch/tag: $SELECTED_REF"
+          python3 testing.py 
